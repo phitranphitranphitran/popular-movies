@@ -1,0 +1,14 @@
+// Posters from TMDb aren't always the same size, need to stretch to fill
+
+.movie-thumbnail {
+  display: inline-block;
+  width: 10em;
+  height: 15em;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    vertical-align: bottom;
+  }
+}

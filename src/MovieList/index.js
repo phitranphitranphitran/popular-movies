@@ -1,67 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MovieThumbnail from '../MovieThumbnail';
-
-const ENDPOINT_URL_PREFIX = 'https://api.themoviedb.org/3';
-
-const requestStates = {
-  LOADING: 'LOADING',
-  SUCCESS: 'SUCCESS',
-  ERROR: 'ERROR'
-};
+import createEndpointUrl from '../util/createEndpointUrl';
+import './styles.scss';
 
 class MovieList extends React.Component {
-  state = { 
-    movies: [],
-    requestState: requestStates.LOADING
-  }
+  state = {}
 
   async componentDidMount() {
-    this.setState({ requestState: requestStates.LOADING });
-    try {
-      const movies = await this.getMovies();
-      this.setState({ movies, requestState: requestStates.SUCCESS });
-    } catch (error) {
-      console.error(error);
-      this.setState({ requestState: requestStates.ERROR });
-    }
+    const movies = await this.getMovies();
+    this.setState({ movies });
   }
 
   async getMovies() {
-    const response = await fetch(this.endpointUrl);
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
+    const endpointUrl = createEndpointUrl(this.props.endpointPath);
+    const response = await fetch(endpointUrl);
     const json = await response.json();
     return json.results;
   }
 
-  get endpointUrl() {
-    return ENDPOINT_URL_PREFIX + this.props.endpointPath 
-      + '?api_key=' + process.env.REACT_APP_API_KEY;
-  }
-
   render() {
-    switch (this.state.requestState) {
-      case requestStates.SUCCESS:
-        return this.state.movies.map(movie => 
-          <MovieThumbnail
-            key={movie.id}
-            id={movie.id}
-            posterPath={movie.poster_path}
-            title={movie.original_title}
-          />
-        );
-      case requestStates.ERROR:
-        return (
-          <div>Oops, an error occured</div>
-        );
-      case requestStates.LOADING:
-      default:
-        return (
-          <div>Loading...</div>
-        );
+    const { movies } = this.state;
+    if (!movies) {
+      return null;
     }
+    return (
+      <div className="movie-list">
+        {movies.map(movie => 
+          <MovieThumbnail key={movie.id} {...movie} />
+        )}
+      </div>
+    )
   }
 }
 

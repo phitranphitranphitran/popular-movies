@@ -1,0 +1,46 @@
+.movie-detail {
+  .movie-title {
+    margin: 0;
+    padding: 0.8em 0.5em;
+    background-color: #009688;
+    color: white;
+    font-weight: 300;
+  }
+
+  .container {
+    margin: 1.5em;
+    color: #7d7d7d;
+  }
+
+  .movie-thumbnail {
+    max-width: 40%;
+    height: auto;
+  }
+
+  .stats {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 2em;
+    line-height: 1.6
+  }
+
+  .year {
+    font-size: 2em;
+    font-weight: 300;
+  }
+
+  .runtime {
+    font-size: 1.8em;
+    font-style: italic;
+  }
+
+  .rating {
+    color: black;
+    font-size: 1.3em;
+  }
+
+  .overview {
+    font-size: 0.9em;
+    line-height: 1.3;
+  }
+}

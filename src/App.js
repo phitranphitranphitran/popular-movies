@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import AppBar from './AppBar';
 import PopularMovies from './PopularMovies';
 import TopRatedMovies from './TopRatedMovies';
+import MovieDetail from './MovieDetail';
 
 const App = () => (
   <Router>
@@ -11,7 +12,7 @@ const App = () => (
       <Switch>
         <Route path="/popular" component={PopularMovies} />
         <Route path="/top" component={TopRatedMovies} />
-        {/* <Route path="/movies/:id" component={MovieDetail}></Route> */}
+        <Route path="/movies/:id" component={MovieDetail}></Route>
         <Redirect from="/" to="popular" />
       </Switch>
     </main>

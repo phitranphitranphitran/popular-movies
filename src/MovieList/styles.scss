@@ -1,0 +1,15 @@
+.movie-list {
+  .movie-thumbnail {
+    margin: 1.5em;
+  }
+}
+
+@media (max-width: 768px) {
+  .movie-list {
+    .movie-thumbnail {
+      width: 50%;
+      height: 75vw;
+      margin: 0;
+    }
+  }
+}

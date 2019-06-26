@@ -1,0 +1,13 @@
+.appbar {
+  background-color: #212121;
+  padding: 1em;
+
+  &, & a {
+    color: white;
+  }
+
+  .page-title {
+    margin: 0;
+    font-size: 1.5em;
+  }
+}

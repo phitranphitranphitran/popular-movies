@@ -29,6 +29,9 @@ class MovieList extends React.Component {
 
   async getMovies() {
     const response = await fetch(this.endpointUrl);
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
     const json = await response.json();
     return json.results;
   }

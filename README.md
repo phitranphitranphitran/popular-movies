@@ -1,3 +1,29 @@
+## Setup
+
+Requires: Node 10 and Yarn.
+
+```
+# Clone this project
+$ git clone https://github.com/phitranphitranphitran/popular-movies.git
+$ cd popular-movies
+
+# Run yarn to install this project's dependencies
+$ yarn
+
+# Create a file in the root directory named .env.local
+$ touch .env.local
+
+# Add an env variable for your TMDb API key 
+$ echo "REACT_APP_API_KEY=YOUR_API_KEY_HERE" > .env.local
+
+# Start running the project at localhost:3000
+$ npm start
+```
+
+The default README from Create React App is below.
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

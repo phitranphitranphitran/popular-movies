@@ -5,11 +5,15 @@ import createEndpointUrl from '../util/createEndpointUrl';
 import './styles.scss';
 
 class MovieDetail extends React.Component {
-  state = {}
+  state = {
+    trailers: []
+  }
 
   async componentDidMount() {
     const movie = await this.getMovie();
     this.setState({ movie });
+    const trailers = await this.getTrailers();
+    this.setState({ trailers })
   }
 
   async getMovie() {
@@ -17,6 +21,14 @@ class MovieDetail extends React.Component {
     const endpointUrl = createEndpointUrl(path);
     const response = await fetch(endpointUrl);
     return response.json();
+  }
+
+  async getTrailers() {
+    const path = `/movie/${this.props.match.params.id}/videos`;
+    const endpointUrl = createEndpointUrl(path);
+    const response = await fetch(endpointUrl);
+    const json = await response.json();
+    return json.results.filter(video => video.site === 'YouTube' && video.type === 'Trailer');
   }
 
   render() {
@@ -43,6 +55,18 @@ class MovieDetail extends React.Component {
             </div>
           </div>
           <p className="overview">{movie.overview}</p>
+          <hr />
+          <h2>Trailers:</h2>
+          {this.state.trailers.map((trailer, index) =>
+            <div key={trailer.key} className="trailer-container">
+              <h3>{trailer.name}</h3>
+              <iframe
+                title={trailer.name}
+                src={'https://www.youtube.com/embed/' + trailer.key}
+                className="trailer-video"
+              />
+            </div>
+          )}
         </div>
       </div>
     );

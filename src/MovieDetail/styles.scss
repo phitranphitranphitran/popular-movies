@@ -43,4 +43,19 @@
     font-size: 0.9em;
     line-height: 1.3;
   }
+
+  .trailer-video {
+    border: none;
+    width: 30em;
+    height: 17em;
+  }
+}
+
+@media (max-width: 768px) {
+  .movie-detail {
+    .trailer-video {
+      width: 100%;
+      height: 14em;
+    }
+  }
 }
